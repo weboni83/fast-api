@@ -196,3 +196,13 @@ pip install pymysql
 > requirements.txt 대신 사용이 가능한 dependency management
 
 [poetry](https://python-poetry.org/docs)
+
+## 파일 업로드
+
+```bash
+pip install python-multipart
+```
+
+## Security
+
+https://fastapi.tiangolo.com/tutorial/security/first-steps/

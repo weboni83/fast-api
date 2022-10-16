@@ -21,6 +21,8 @@ def upgrade() -> None:
         'items',
         sa.Column('id', sa.Integer, primary_key=True, index=True),
         sa.Column('title', sa.String(50), unique=True, index=True),
+        sa.Column('price', sa.Float ),
+        sa.Column('tax', sa.Float ),
         sa.Column('description', sa.String(200), index=True),
         sa.Column('owner_id', sa.Integer, sa.ForeignKey("users.id")),
     )

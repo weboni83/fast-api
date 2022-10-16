@@ -3,11 +3,49 @@ Generic single-database configuration.
 Test Script for Sqlite
 
 ```sql
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('admin@mail.com', 'passw0rd', 1);
 
-INSERT INTO users(id, email, hashed_password, is_active)
-VALUES (4, '4@gamail.com', 'passw0rd', 2)
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('manager@mail.com', 'passw0rd', 1);
 
-INSERT INTO account(id, name, description, insert_at)
-VALUES (2, 'user_id1', 'account', datetime('now','localtime'))
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('user1@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('user2@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('1@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('2@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('3@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('4@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('5@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('6@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('7@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('8@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('9@mail.com', 'passw0rd', 1);
+
+INSERT INTO users( email, hashed_password, is_active)
+VALUES ('10@mail.com', 'passw0rd', 1);
+
+INSERT INTO account( name, description, insert_at)
+VALUES (2, 'user_id1', 'account', datetime('now','localtime'));
 
 ```

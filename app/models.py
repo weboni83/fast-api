@@ -1,4 +1,4 @@
-from sqlalchemy import Boolean, Column, ForeignKey, Integer, String
+from sqlalchemy import Boolean, Column, Float, ForeignKey, Integer, String
 from sqlalchemy.orm import relationship
 
 from .database import Base
@@ -18,6 +18,8 @@ class Item(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     title = Column(String, index=True)
+    price = Column(Float)
+    tax = Column(Float)
     description = Column(String, index=True)
     owner_id = Column(Integer, ForeignKey("users.id"))
 

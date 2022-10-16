@@ -5,12 +5,21 @@ class ItemBase(BaseModel):
     title: str
     description: str | None = None
 
-
+# 생성할 때 필요
 class ItemCreate(ItemBase):
-    pass
+    price: float | None = None
+    tax: float | None = None
 
+# response model(out)
+class ItemOut(BaseModel):
+    title: str
+    description: str | None = None
+    price: float | None = None
+    amount: float | None = None
+    tax: float | None = None
 
-class Item(ItemBase):
+# 전체 스키마
+class Item(ItemCreate):
     id: int
     owner_id: int
 

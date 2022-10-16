@@ -20,13 +20,13 @@ class Settings(BaseSettings):
         "http://localhost:8080"
         ]
 
-    MYSQL_SERVER: str = "localhost"
+    MYSQL_SERVER: str = "sosoz.me:3307"
     MYSQL_USER: str = "dev"
     MYSQL_PASSWRORD: str = "Passw0rd10!"
     MYSQL_DB: str = "fastapi"
     MYSQL_SCHEMA: str = "mysql+pymysql"
-    # SQLALCHEMY_DATABASE_URL = f"{MYSQL_SCHEMA}://{MYSQL_USER}:{MYSQL_PASSWRORD}@{MYSQL_SERVER}/{MYSQL_DB}"
-    SQLALCHEMY_DATABASE_URL = "mysql+pymysql://dev:Passw0rd10!@localhost:3307/fastapi?charset=utf8mb4"
+    SQLALCHEMY_DATABASE_URL = f"{MYSQL_SCHEMA}://{MYSQL_USER}:{MYSQL_PASSWRORD}@{MYSQL_SERVER}/{MYSQL_DB}"
+    # SQLALCHEMY_DATABASE_URL = "mysql+pymysql://dev:Passw0rd10!@localhost:3307/fastapi?charset=utf8mb4"
 
     # POSTGRES_SERVER: str
     # POSTGRES_USER: str
