@@ -18,9 +18,11 @@ def get_users(db: Session, skip: int = 0, limit: int = 100):
 
 
 def create_user(db: Session, user: schemas.UserCreate):
-    # fake_hashed_password = user.password + "notreallyhashed"
-    fake_hashed_password = crypto.encryption(user.password)
-    db_user = models.User(email=user.email, hashed_password=fake_hashed_password)
+    # encryption(string) => 
+    # encode with gensalt => 
+    # decode when saving to db
+    hashed_password = crypto.encryption(user.password)
+    db_user = models.User(email=user.email, hashed_password=hashed_password.decode('utf-8'))
     db.add(db_user)
     db.commit()
     db.refresh(db_user)

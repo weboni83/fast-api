@@ -206,3 +206,10 @@ pip install python-multipart
 ## Security
 
 https://fastapi.tiangolo.com/tutorial/security/first-steps/
+
+### jwt
+
+```bash
+pip install "python-jose[cryptography]"
+pip install "passlib[bcrypt]"
+```
