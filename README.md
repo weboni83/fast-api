@@ -193,6 +193,10 @@ pip install pymysql
 
 ### poetry 사용법
 
+```bash
+pip freeze>requirements.txt
+```
+
 > requirements.txt 대신 사용이 가능한 dependency management
 
 [poetry](https://python-poetry.org/docs)

@@ -1,4 +1,5 @@
 
+import os
 import time
 from fastapi import Body, Depends, FastAPI, HTTPException, Request, Response, status
 
@@ -20,6 +21,9 @@ from fastapi.middleware.cors import CORSMiddleware
 from .dependencies import get_token_header
 from .internal import admin
 from .routers import auth, items, users
+# StaticFiles
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse 
 
 # query token (provider) 전체 쿼리에 적용할 토큰
 # app = FastAPI(dependencies=[Depends(get_query_token)])
@@ -63,27 +67,27 @@ async def db_session_middleware(request: Request, call_next):
         request.state.db.close()
     return response
 
-
-
-
-# Route
 # @app.get("/")
-# async def root():
-#     return {"message": "Hello World"}
+# async def main():
+#     content = """
+# <body>
+# <form action="/files/" enctype="multipart/form-data" method="post">
+# <input name="files" type="file" multiple>
+# <input type="submit">
+# </form>
+# <form action="/uploadfiles/" enctype="multipart/form-data" method="post">
+# <input name="files" type="file" multiple>
+# <input type="submit">
+# </form>
+# </body>
+#     """
+#     return HTMLResponse(content=content)
+
+
+# StaticFiles
+app.mount("/", StaticFiles(directory="app/static/", html=True), name="static")
+# Route
 @app.get("/")
 async def main():
-    content = """
-<body>
-<form action="/files/" enctype="multipart/form-data" method="post">
-<input name="files" type="file" multiple>
-<input type="submit">
-</form>
-<form action="/uploadfiles/" enctype="multipart/form-data" method="post">
-<input name="files" type="file" multiple>
-<input type="submit">
-</form>
-</body>
-    """
-    return HTMLResponse(content=content)
-
+    return FileResponse('./static/index.html', media_type='text/html')
 
