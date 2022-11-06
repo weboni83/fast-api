@@ -1,4 +1,4 @@
-name: m2isoft
+name: fast-api
 on:
   push:
     branches: main
