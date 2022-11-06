@@ -217,3 +217,75 @@ https://fastapi.tiangolo.com/tutorial/security/first-steps/
 pip install "python-jose[cryptography]"
 pip install "passlib[bcrypt]"
 ```
+
+### test auth
+
+POST `http://127.0.0.1:8000/auth/token`
+test@mail.com
+
+### Static 파일 추가하기
+
+```python
+# StaticFiles
+from fastapi.staticfiles import StaticFiles
+from fastapi.responses import FileResponse
+app = FastAPI()
+app.mount("/", StaticFiles(directory="app/static/", html=True), name="static")
+# Route
+@app.get("/")
+async def main():
+    return FileResponse('./static/index.html', media_type='text/html')
+```
+
+## 도커 실행하기
+
+`FastAPI in Containers - Docekr`: [Link](https://fastapi.tiangolo.com/deployment/docker/)
+
+### Dockerfile 추가하기
+
+```docker
+# Start from the official Python base image.
+FROM python:3.10
+
+# Set the current working directory to /code.
+WORKDIR /code
+
+# Copy the file with the requirements to the /code directory.
+COPY ./requirements.txt /code/requirements.txt
+
+# Install the package dependencies in the requirements file.
+RUN pip install --no-cache-dir --upgrade -r /code/requirements.txt
+
+# Copy the ./app directory inside the /code directory.
+COPY ./app /code/app
+
+# Set the command to run the uvicorn server.
+CMD ["uvicorn", "app.main:app", "--host", "0.0.0.0", "--port", "80"]
+# for https:
+# CMD ["uvicorn", "app.main:app", "--proxy-headers", "--host", "0.0.0.0", "--port", "80"]
+
+```
+
+디렉토리 구조
+
+```
+.
+├── app
+│   ├── __init__.py
+│   └── main.py
+├── Dockerfile
+└── requirements.txt
+
+```
+
+### 도커 빌드
+
+```bash
+docker build -t myimage .
+```
+
+### 도커 실행
+
+```bash
+docker run -d --name mycontainer -p 80:80 myimage
+```
