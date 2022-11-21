@@ -33,6 +33,10 @@ def create_user(db: Session, user: schemas.UserCreate):
 def get_items(db: Session, skip: int = 0, limit: int = 100):
     return db.query(models.Item).offset(skip).limit(limit).all()
 
+def get_items(db: Session, skip: int = 0, limit: int = 100, q:str= '%'):
+    search = "%{}%".format(q)
+    return db.query(models.Item).filter(models.Item.title.like(search)).offset(skip).limit(limit).all()
+
 def get_item(db: Session, item_id: int):
     return db.query(models.Item).filter(models.Item.id == item_id).first()
 

@@ -21,7 +21,12 @@ router = APIRouter(
 async def read_item(item_id: int, q: Union[str, None] = None):
     return {"item_id": item_id, "q": q}
 
-
+# @router.get("/", tags=["items"])
+# async def read_items(q: Union[str, None] = None
+# , db: Session = Depends(get_db)):
+#     print(q)
+#     items = crud.get_items(db,q=q)    
+#     return items
 
 # @app.get("/items/", response_model=list[schemas.Item], tags=["items"])
 # async def read_items(skip: int = 0, limit: int = 100, db: Session = Depends(get_db)):
@@ -34,7 +39,14 @@ async def read_items(commons: CommonQueryParams = Depends()
     response = {}
     if commons.q:
         response.update({"q": commons.q})
-    items = crud.get_items(db, skip=commons.skip, limit=commons.limit)
+    print(commons.q)
+    print(commons.skip)
+    print(commons.limit)
+
+    if commons.q:
+        items = crud.get_items(db, skip=commons.skip, limit=commons.skip + commons.limit, q=commons.q)
+    else:
+        items = crud.get_items(db, skip=commons.skip, limit=commons.skip + commons.limit)
     response.update({"items": items})
     return items
 

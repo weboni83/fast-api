@@ -1,7 +1,7 @@
 from datetime import datetime
 
-from fastapi import Depends, Header, HTTPException, status
-from typing import Union
+from fastapi import Depends, Header, HTTPException, Query, status
+from typing import Optional, Union
 from jose import JWTError, jwt
 from pymysql import Timestamp
 
@@ -61,7 +61,7 @@ def get_db():
 
 # Depends common parameters
 class CommonQueryParams:
-    def __init__(self, q: Union[str, None] = None, skip: int = 0, limit: int = 100):
+    def __init__(self, skip: int = 0, limit: int = 100,q: Union[str, None] = None):
         self.q = q
         self.skip = skip
         self.limit = limit
